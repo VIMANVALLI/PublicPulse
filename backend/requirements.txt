@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+sqlalchemy
+passlib[bcrypt]
+python-multipart
+python-jose
+pandas
+openpyxl
+xlrd
+google-api-python-client
+python-dotenv
+requests
+textblob
+bcrypt
