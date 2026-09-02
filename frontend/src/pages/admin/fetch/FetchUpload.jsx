@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import API from "../api"; // Change path if your API file is in a different location
+import API from "../../../services/api";
 
 function FetchUpload() {
   const [url, setUrl] = useState("");
