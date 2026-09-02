@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import API from "../api"; // Change path if your API file is in a different location
 
 function FetchUpload() {
   const [url, setUrl] = useState("");
@@ -18,15 +18,24 @@ function FetchUpload() {
 
       const response = await API.post(
         "/youtube/fetch",
-        { url: url }
+        {
+          url: url,
+        }
       );
 
       setMessage(
         `Successfully fetched ${response.data.count} comments`
       );
     } catch (error) {
-      console.error(error);
-      setMessage("Error fetching data");
+      console.error("Error fetching YouTube comments:", error);
+
+      if (error.response) {
+        setMessage(
+          error.response.data?.detail || "Error fetching data"
+        );
+      } else {
+        setMessage("Unable to connect to server");
+      }
     } finally {
       setLoading(false);
     }
@@ -57,7 +66,9 @@ function FetchUpload() {
           <p
             className="mt-3"
             style={{
-              color: message.includes("Error") ? "red" : "green",
+              color: message.toLowerCase().includes("error")
+                ? "red"
+                : "green",
             }}
           >
             {message}
