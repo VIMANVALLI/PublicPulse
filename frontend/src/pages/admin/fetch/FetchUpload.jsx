@@ -16,8 +16,8 @@ function FetchUpload() {
       setLoading(true);
       setMessage("");
 
-      const response = await axios.post(
-        "http://localhost:8000/youtube/fetch",   // ✅ FIXED HERE
+      const response = await API.post(
+        "/youtube/fetch",
         { url: url }
       );
 
